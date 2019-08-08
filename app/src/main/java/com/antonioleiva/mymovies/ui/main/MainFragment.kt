@@ -50,10 +50,8 @@ class MainFragment : Fragment() {
         viewModel = getViewModel { MainViewModel(MoviesRepository(app)) }
 
         viewModel.navigateToMovie.observe(viewLifecycleOwner, EventObserver { id ->
-            navController.navigate(
-                R.id.action_mainFragment_to_detailFragment,
-                bundleOf("id" to id)
-            )
+            val action = MainFragmentDirections.actionMainFragmentToDetailFragment(id)
+            navController.navigate(action)
         })
 
         viewModel.requestLocationPermission.observe(viewLifecycleOwner, EventObserver {
