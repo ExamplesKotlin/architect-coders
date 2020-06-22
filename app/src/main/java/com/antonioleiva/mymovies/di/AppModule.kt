@@ -14,10 +14,13 @@ import com.antonioleiva.mymovies.data.database.RoomDataSource
 import com.antonioleiva.mymovies.data.server.TheMovieDbDataSource
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
+@InstallIn(ApplicationComponent::class)
 class AppModule {
 
     @Provides
@@ -27,7 +30,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun databaseProvider(app: Application) = Room.databaseBuilder(
+    fun databaseProvider(app: Application): MovieDatabase = Room.databaseBuilder(
         app,
         MovieDatabase::class.java,
         "movie-db"

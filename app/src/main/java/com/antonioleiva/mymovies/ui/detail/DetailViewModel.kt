@@ -1,5 +1,6 @@
 package com.antonioleiva.mymovies.ui.detail
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.antonioleiva.domain.Movie
@@ -7,9 +8,10 @@ import com.antonioleiva.mymovies.ui.common.ScopedViewModel
 import com.antonioleiva.usecases.FindMovieById
 import com.antonioleiva.usecases.ToggleMovieFavorite
 import kotlinx.coroutines.launch
+import javax.inject.Named
 
-class DetailViewModel(
-    private val movieId: Int,
+class DetailViewModel @ViewModelInject constructor(
+    @Named("movieId") private val movieId: Int,
     private val findMovieById: FindMovieById,
     private val toggleMovieFavorite: ToggleMovieFavorite
 ) :

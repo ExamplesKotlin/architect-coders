@@ -4,20 +4,14 @@ import com.antonioleiva.data.repository.MoviesRepository
 import com.antonioleiva.usecases.GetPopularMovies
 import dagger.Module
 import dagger.Provides
-import dagger.Subcomponent
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityRetainedComponent
 
 @Module
+@InstallIn(ActivityRetainedComponent::class)
 class MainActivityModule {
-
-    @Provides
-    fun mainViewModelProvider(getPopularMovies: GetPopularMovies) = MainViewModel(getPopularMovies)
 
     @Provides
     fun getPopularMoviesProvider(moviesRepository: MoviesRepository) =
         GetPopularMovies(moviesRepository)
-}
-
-@Subcomponent(modules = [(MainActivityModule::class)])
-interface MainActivityComponent {
-    val mainViewModel: MainViewModel
 }

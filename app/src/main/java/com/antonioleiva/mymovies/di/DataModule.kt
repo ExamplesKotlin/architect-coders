@@ -8,9 +8,12 @@ import com.antonioleiva.data.source.LocationDataSource
 import com.antonioleiva.data.source.RemoteDataSource
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Named
 
 @Module
+@InstallIn(ApplicationComponent::class)
 class DataModule {
 
     @Provides
